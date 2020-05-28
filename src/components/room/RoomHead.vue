@@ -5,6 +5,7 @@
     fixed
     :placeholder="true"
     @click-left="onClickLeft"
+    v-if="title"
   >
     <template #left>
       <van-icon name="arrow-left" size="1.2rem" color="black" />

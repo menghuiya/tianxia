@@ -1,6 +1,6 @@
 <template>
-  <div class="roombox">
-    <room-head :title="title"></room-head>
+  <div class="roombox" v-if="saylist">
+    <room-head :title="users.receive_user[0].userName"></room-head>
     <van-sticky :offset-top="46">
       <van-notice-bar
         :text="notice"
@@ -12,6 +12,7 @@
     <room-content
       :saylist="saylist"
       :local_id="local_id"
+      :users="users"
       class="chat-content"
     ></room-content>
     <room-send @senddata="senddata"></room-send>
@@ -31,8 +32,9 @@ export default {
     return {
       title: '冉志成',
       notice: '注意:以扫二维码/点链接/去微信等名义让你交钱的都是骗子!',
-      saylist: [],
+      saylist: null,
       local_id: JSON.parse(Cookies.get('userData')).id,
+      users: {},
     };
   },
   sockets: {
@@ -102,8 +104,15 @@ export default {
       url: '/api/chat/history/' + this.room_id,
       method: 'get',
     }).then((res) => {
-      this.saylist = res.data.data;
+      this.saylist = res.data.data.history;
       // this.title = res.data.data[0].receive.userName;
+      let users = res.data.data.users;
+      this.users.send_user = users.filter((item) => {
+        return item._id == this.local_id;
+      });
+      this.users.receive_user = users.filter((item) => {
+        return item._id != this.local_id;
+      });
     });
   },
 };

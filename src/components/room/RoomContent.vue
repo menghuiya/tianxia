@@ -5,6 +5,7 @@
       :key="index"
       :saydata="item"
       :local_id="local_id"
+      :users="users"
     ></room-card>
   </div>
 </template>
@@ -12,7 +13,7 @@
 <script>
 import RoomCard from './RoomCard';
 export default {
-  props: ['saylist', 'local_id'],
+  props: ['saylist', 'local_id', 'users'],
   components: {
     RoomCard,
   },

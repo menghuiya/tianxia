@@ -1,23 +1,23 @@
 <template>
   <div>
     <div class="chat-card-left" v-if="issend">
-      <img class="user-img" :src="saydata.send.headImg" />
+      <img class="user-img" :src="users.receive_user[0].headImg" />
       <div class="user-message">{{ saydata.msg }}</div>
     </div>
     <div class="chat-card-right" v-else>
       <div class="user-message">{{ saydata.msg }}</div>
-      <img class="user-img" :src="saydata.send.headImg" />
+      <img class="user-img" :src="users.send_user[0].headImg" />
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  props: ['saydata', 'local_id'],
+  props: ['saydata', 'local_id', 'users'],
   computed: {
     issend() {
-      if (this.saydata.send._id) {
-        if (this.saydata.send._id != this.local_id) {
+      if (this.saydata.send) {
+        if (this.saydata.send != this.local_id) {
           return true;
         } else {
           return false;
