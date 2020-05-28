@@ -5,7 +5,7 @@
       tag="div"
       class="p-card-main"
     >
-      <img :src="imginfo.imgPath[0]" alt="" class="p-img" />
+      <img :src="imginfo.imgPath[0]" alt="" class="p-img" @error="defImg" />
       <div class="van-multi-ellipsis--l2 shoptitle">
         {{ imginfo.description }}
       </div>
@@ -27,6 +27,18 @@
 <script>
 export default {
   props: ['imginfo'],
+  data() {
+    return {
+      defaultImg: require('@/assets/image/good/noimg.png'),
+    };
+  },
+  methods: {
+    defImg() {
+      let img = event.srcElement;
+      img.src = this.defaultImg;
+      img.onerror = null; //防止闪图
+    },
+  },
 };
 </script>
 

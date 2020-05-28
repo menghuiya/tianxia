@@ -55,7 +55,6 @@ import { request } from '@/network/request';
 import { Toast } from 'vant';
 import HeadTitle from '../headtitle';
 export default {
-  inject: ['reload'],
   data() {
     return {
       title: '我的余额',

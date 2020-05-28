@@ -9,6 +9,7 @@
         alt=""
         v-for="(item, index) in imgPath"
         :key="index"
+        @error="defImg"
         @click="imgClick(index)"
       />
     </div>
@@ -29,10 +30,7 @@ export default {
   props: ['des', 'imgPath'],
   data() {
     return {
-      imgdata: [
-        require('@/assets/image/good/test.jpg'),
-        require('@/assets/image/good/test1.jpg'),
-      ],
+      defaultImg: require('@/assets/image/good/noimg.png'),
     };
   },
   methods: {
@@ -41,6 +39,11 @@ export default {
         images: this.imgPath,
         startPosition: start,
       });
+    },
+    defImg() {
+      let img = event.srcElement;
+      img.src = this.defaultImg;
+      img.onerror = null; //防止闪图
     },
   },
 };

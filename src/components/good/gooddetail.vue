@@ -3,7 +3,10 @@
     <div class="g-box" v-if="boxshow">
       <good-head></good-head>
       <good-user :user="goodinfo.user"></good-user>
-      <good-price :price="goodinfo.price"></good-price>
+      <good-price
+        :price="goodinfo.price"
+        :isSale="goodinfo.isSale"
+      ></good-price>
       <good-content
         :des="goodinfo.description"
         :imgPath="goodinfo.imgPath"
@@ -40,6 +43,7 @@ export default {
       boxshow: false,
       goodinfo: {},
       isShow: false,
+      noimg: require('@/assets/image/good/noimg.png'),
     };
   },
   components: {
@@ -89,13 +93,16 @@ export default {
       method: 'get',
     }).then((res) => {
       this.goodinfo = res.data.data; // 数据
+      if (this.goodinfo.imgPath.length == 0) {
+        this.goodinfo.imgPath.push(this.noimg);
+      }
       this.boxshow = true;
       Toast.clear();
       let user_id = '';
       if (Cookies.get('userData')) {
         user_id = JSON.parse(Cookies.get('userData')).id;
       }
-      if (this.goodinfo.user._id == user_id) {
+      if (this.goodinfo.user._id == user_id || this.goodinfo.isSale) {
         this.isShow = false;
       } else {
         this.isShow = true;

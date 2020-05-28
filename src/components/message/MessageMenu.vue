@@ -6,7 +6,7 @@
         :key="index"
         :icon="value.imgsrc"
         :text="value.name"
-        badge="99+"
+        :to="value.url"
       />
     </van-grid>
   </div>
@@ -21,21 +21,25 @@ export default {
           id: 1,
           name: '官方公告',
           imgsrc: require('@/assets/image/message/gg.png'),
+          url: '/notice',
         },
         {
           id: 2,
           name: '交易信息',
           imgsrc: require('@/assets/image/message/jy.png'),
+          url: '/orders',
         },
         {
           id: 3,
           name: '互动信息',
           imgsrc: require('@/assets/image/message/hd.png'),
+          url: '/notice',
         },
         {
           id: 4,
           name: '指南教程',
           imgsrc: require('@/assets/image/message/zn.png'),
+          url: '/notice',
         },
       ],
     };

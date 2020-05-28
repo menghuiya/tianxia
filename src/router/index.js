@@ -158,6 +158,11 @@ const routes = [
     component: () => import('@/components/order/order'),
   },
   {
+    path: '/orders',
+    name: 'orders',
+    component: () => import('@/components/orders/orders'),
+  },
+  {
     path: '/orderscu',
     name: 'orderscu',
     component: () => import('@/components/order/orderscu'),

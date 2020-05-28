@@ -1,18 +1,21 @@
 <template>
   <div>
-    <div class="p-price-box">
+    <div class="p-price-box" v-if="!isSale">
       <div class="p-price"><span>¥</span>{{ price }}</div>
       <van-tag round type="danger" color="#f3dcdc94" text-color="#ad0000"
         >包邮</van-tag
       >
       <van-tag round color="#b8b5b57a">不讲价</van-tag>
     </div>
+    <div class="issale" v-if="isSale">
+      该商品已出售!
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  props: ['price'],
+  props: ['price', 'isSale'],
 };
 </script>
 
@@ -35,5 +38,11 @@ export default {
     height: 4.2vw;
     margin-top: 1vw;
   }
+}
+.issale {
+  background: #18b566;
+  color: #ffffff;
+  text-align: center;
+  border-radius: 1vw;
 }
 </style>
