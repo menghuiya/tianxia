@@ -28,20 +28,68 @@
         >
           确认收货
         </van-button>
-        <van-button size="small" round type="info" v-if="g_data.status == 2"
-          >评价</van-button
+        <van-button
+          size="small"
+          round
+          type="info"
+          v-if="g_data.status == 2"
+          @click="show = !show"
         >
+          评价
+        </van-button>
       </template>
     </van-card>
+    <!-- 评价区域 -->
+    <van-popup
+      v-model="show"
+      closeable
+      position="bottom"
+      :style="{ height: '30%' }"
+    >
+      <van-field
+        v-model="message"
+        rows="1"
+        autosize
+        label="评价:"
+        label-width="12vw"
+        type="textarea"
+        placeholder="请输入对该商品的评价"
+        maxlength="100"
+        :show-word-limit="true"
+      />
+      <van-button class="postbtn" color="#7232dd" @click="surePost"
+        >提交评价</van-button
+      >
+    </van-popup>
   </div>
 </template>
 
 <script>
+import { Dialog } from 'vant';
 export default {
   props: ['g_data'],
+  data() {
+    return {
+      show: false,
+      message: '',
+    };
+  },
   methods: {
     sureReceipt() {
-      this.$emit('receipt', this.g_data._id);
+      Dialog.confirm({
+        title: '确认收货',
+        message: '请确认货物是否属于正常状态',
+      }).then(() => {
+        this.$emit('receipt', this.g_data._id);
+      });
+    },
+    surePost() {
+      let evdata = {
+        orderId: this.g_data._id,
+        evaluate: this.message,
+      };
+      this.$emit('evaluate', evdata);
+      this.show = false;
     },
   },
 };
@@ -57,6 +105,9 @@ export default {
     background-color: #ffffff;
     .van-card__title {
       font-size: 0.8rem;
+      margin-bottom: 1vw;
+      max-height: 1.90667rem;
+      line-height: 0.9rem;
     }
     .van-card__price {
       color: red;
@@ -68,6 +119,13 @@ export default {
     .statutext {
       margin-right: 1vw;
     }
+  }
+  .van-field {
+    margin: 6vw 0;
+  }
+  .postbtn {
+    float: right;
+    margin-right: 5vw;
   }
 }
 </style>

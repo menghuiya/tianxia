@@ -29,6 +29,7 @@
             v-for="item in buy_c"
             :key="item._id"
             :g_data="item"
+            @evaluate="evaluate"
           ></order-card>
         </div>
         <van-empty v-if="buy_c.length == 0" description="您还没有相关订单" />
@@ -86,6 +87,24 @@ export default {
           Toast.fail(err.msg);
         });
     },
+    evaluate(data) {
+      request({
+        method: 'post',
+        url: '/api/order/buyer/evaluate',
+        data: {
+          orderId: data.orderId,
+          evaluate: data.evaluate,
+          userId: this.user_id,
+        },
+      })
+        .then(() => {
+          Toast.success('评价成功');
+          location.reload();
+        })
+        .catch((err) => {
+          Toast.fail(err.msg);
+        });
+    },
   },
   mounted() {
     request({
@@ -111,7 +130,6 @@ export default {
             this.buy_a.push(item);
         }
       }
-      console.log(this.buy_a);
     });
   },
 };
