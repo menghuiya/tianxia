@@ -53,6 +53,7 @@ export default {
           iconimg: require('@/assets/image/user/gold-coin.png'),
           name: '我卖出的',
           num: 0,
+          url: '/orders',
         },
       ],
       buyimg: [
@@ -61,6 +62,7 @@ export default {
           iconimg: require('@/assets/image/user/bag.png'),
           name: '我买到的',
           num: 0,
+          url: '/orders',
         },
         {
           id: 2,
@@ -132,6 +134,8 @@ export default {
       this.buyimg[0].num = res.data.data.buyCount;
       this.userdata = res.data.data;
       this.userdata.id = id;
+      this.sellimg[1].url = '/sellorders/' + id;
+      this.buyimg[0].url = '/buyorders/' + id;
     });
   },
 };

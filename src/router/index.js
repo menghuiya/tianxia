@@ -158,9 +158,14 @@ const routes = [
     component: () => import('@/components/order/order'),
   },
   {
-    path: '/orders',
-    name: 'orders',
-    component: () => import('@/components/orders/orders'),
+    path: '/buyorders/:user_id',
+    name: 'buyorders',
+    component: () => import('@/components/orders/buyorders/buyorders'),
+  },
+  {
+    path: '/sellorders/:user_id',
+    name: 'sellorders',
+    component: () => import('@/components/orders/sellorders/sellorders'),
   },
   {
     path: '/orderscu',

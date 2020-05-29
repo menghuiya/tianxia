@@ -7,6 +7,7 @@
         :key="item.id"
         :icon="item.iconimg"
         :text="item.name + ' ' + item.num"
+        :to="item.url"
       />
     </van-grid>
   </div>

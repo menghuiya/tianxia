@@ -44,7 +44,7 @@ export default {
           let buyerId = JSON.parse(Cookies.get('userData')).id;
           let sellerId = this.orderdata.user._id;
           request({
-            url: '/api/commodity/order',
+            url: '/api/order',
             method: 'post',
             data: {
               commodityId: this.orderdata._id,
