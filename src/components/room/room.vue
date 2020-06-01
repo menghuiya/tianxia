@@ -22,11 +22,11 @@
 <script>
 import Cookies from 'js-cookie';
 import { request } from '@/network/request';
-import io from 'socket.io-client';
+// import io from 'socket.io-client';
 import RoomHead from './RoomHead';
 import RoomContent from './RoomContent';
 import RoomSend from './RoomSend';
-const socket = io('https://www.wdf5.com:5050/');
+// const socket = io('https://www.wdf5.com:5050/');
 export default {
   data() {
     return {
@@ -87,19 +87,26 @@ export default {
         msg: msg, // 发送内容
       };
       console.log(info);
-      socket.emit('chat', info);
+      this.$socket.emit('chat', info);
     },
   },
-  created() {
-    socket.on('back', (res) => {
-      this.saylist.push(res.data);
-      setTimeout(() => {
-        let div = document.querySelector('.record-box');
-        div.scrollTop = div.scrollHeight;
-      }, 500);
-    });
-  },
+  // created() {
+  //   socket.on('back', (res) => {
+  //     this.saylist.push(res.data);
+  //     setTimeout(() => {
+  //       let div = document.querySelector('.record-box');
+  //       div.scrollTop = div.scrollHeight;
+  //     }, 500);
+  //   });
+  // },
   mounted() {
+    request({
+      url: '/api/user/check',
+      method: 'get',
+      data: { withCredentials: true },
+    }).then((res) => {
+      console.log(res);
+    });
     request({
       url: '/api/chat/history/' + this.room_id,
       method: 'get',

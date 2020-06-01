@@ -52,6 +52,7 @@ export function request(config) {
     // baseURL: 'http://localhost:8080',
     // timeout: 5000,
     // headers: headers
+    withCredentials: true,
   });
   //拦截器
 
