@@ -24,6 +24,21 @@
         :isFocusAnima="true"
         :isLogin="true"
       ></custom-input>
+      <div class="codeimg">
+        <van-field
+          v-model="verifycode"
+          clearable
+          placeholder="验证码"
+          colon
+          :error-message="error_message"
+          @click-right-icon="recondimg"
+          @focus="clsmessage"
+        >
+          <template #right-icon>
+            <img class="verifyimg" :src="verifyimg" alt="" />
+          </template>
+        </van-field>
+      </div>
       <p class="tips">
         新用户注册，即表示已同意
         <span>《用户服务协议》</span>
@@ -60,6 +75,10 @@ export default {
       },
       goHome: false,
       isLogining: false,
+      error_message: '',
+      verifyimg: '',
+      verifycodes: '',
+      verifycode: '',
     };
   },
   computed: {
@@ -88,6 +107,11 @@ export default {
         _this.isLogining = false;
         return;
       }
+      if (this.verifycode.toUpperCase() !== this.verifycodes.toUpperCase()) {
+        this.error_message = '验证码错误';
+        this.isLogining = false;
+        return;
+      }
       let data = {
         userName: this.p.userName,
         password: md5(this.p.password),
@@ -112,11 +136,24 @@ export default {
           _this.isLogining = false;
         });
     },
+    clsmessage() {
+      this.error_message = '';
+    },
+    recondimg() {
+      request({
+        url: '/api/user/captcha',
+        method: 'get',
+      }).then((res) => {
+        this.verifyimg = res.data.data.imgPath;
+        this.verifycodes = res.data.data.text;
+      });
+    },
   },
   created() {
     if (this.$route.query.from === 'location') {
       this.goHome = true;
     }
+    this.recondimg();
   },
 };
 </script>
@@ -144,6 +181,16 @@ export default {
       img {
         width: 100%;
         height: 100%;
+      }
+    }
+    .codeimg {
+      border: 0.05333333333333334rem solid #ddd;
+      width: 100%;
+      border-radius: 0.16rem;
+      .verifyimg {
+        width: 20vw;
+        height: 10vw;
+        background: lemonchiffon;
       }
     }
     .tips {
