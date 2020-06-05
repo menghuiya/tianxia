@@ -31,6 +31,7 @@ export default {
     KindList,
   },
   mounted() {
+    document.title = '分类页面';
     this.isShow = false;
     Toast.loading({
       message: '加载中...',

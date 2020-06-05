@@ -21,6 +21,7 @@ export default {
     NoticeContent,
   },
   mounted() {
+    document.title = '官方公告';
     request({
       url: '/api/notice',
       method: 'get',

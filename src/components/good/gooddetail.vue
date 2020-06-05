@@ -107,6 +107,7 @@ export default {
       } else {
         this.isShow = true;
       }
+      document.title = this.goodinfo.description.substr(0, 20) + '...';
     });
   },
 };

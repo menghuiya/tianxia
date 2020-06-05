@@ -1,22 +1,24 @@
 <template>
-  <router-link
-    :to="'/room/' + msgdata._id + '_' + user_id"
-    tag="div"
-    class="m-c-box"
-  >
-    <img class="m-c-user-img" :src="msgdata.headImg" />
-    <div class="m-c-user-info">
-      <div class="user-info-name">{{ msgdata.userName }}</div>
-      <div class="user-info-message van-ellipsis">
-        请点击后查看详细信息
+  <div v-if="msgdata">
+    <router-link
+      :to="'/room/' + msgdata._id + '_' + user_id"
+      tag="div"
+      class="m-c-box"
+    >
+      <img class="m-c-user-img" :src="msgdata.headImg" />
+      <div class="m-c-user-info">
+        <div class="user-info-name">{{ msgdata.userName }}</div>
+        <div class="user-info-message van-ellipsis">
+          请点击后查看详细信息
+        </div>
+        <!-- <div class="user-info-date">5天前</div> -->
       </div>
-      <!-- <div class="user-info-date">5天前</div> -->
-    </div>
-    <!-- <img
+      <!-- <img
       class="m-c-goodimg"
       src="http://test.wdf5.com/public/uploadImgs/upload_1589506822260.jpg"
     /> -->
-  </router-link>
+    </router-link>
+  </div>
 </template>
 
 <script>

@@ -57,6 +57,7 @@ export default {
     },
   },
   mounted() {
+    document.title = '首页';
     window.addEventListener('scroll', this.handleTabFix, true);
     request({
       url: '/api/commodity/recommend',

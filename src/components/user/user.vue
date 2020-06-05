@@ -124,6 +124,7 @@ export default {
     UserTool,
   },
   mounted() {
+    document.title = '用户中心';
     let id = JSON.parse(Cookies.get('userData')).id;
     request({
       url: '/api/user/profile/' + id,

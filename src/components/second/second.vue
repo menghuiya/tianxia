@@ -72,6 +72,7 @@ export default {
       Toast.clear();
       this.isShow = true;
     });
+    document.title = '闲置页面';
   },
   beforeRouteLeave(to, from, next) {
     window.removeEventListener('scroll', this.handleTabFix, true);

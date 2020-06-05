@@ -150,6 +150,7 @@ export default {
       this.goHome = true;
     }
     this.recondimg();
+    document.title = '用户登录';
   },
 };
 </script>

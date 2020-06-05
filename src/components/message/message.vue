@@ -18,6 +18,9 @@ export default {
     MessageMenu,
     MessageContent,
   },
+  mounted() {
+    document.title = '消息中心';
+  },
 };
 </script>
 
