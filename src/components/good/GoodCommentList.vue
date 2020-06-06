@@ -1,12 +1,20 @@
 <template>
   <div class="g-comment-box" v-if="comments">
     <div class="g-comment-title">全部留言 · {{ comments.length }}</div>
-    <comment-card
-      v-for="(item, index) in comments"
-      :comment_data="item"
-      :user_data="user"
-      :key="index"
-    ></comment-card>
+    <div v-if="comments.length > 0">
+      <comment-card
+        v-for="(item, index) in comments"
+        :comment_data="item"
+        :user_data="user"
+        :key="index"
+      ></comment-card>
+    </div>
+    <van-empty
+      class="custom-image"
+      image="https://img.yzcdn.cn/vant/custom-empty-image.png"
+      description="暂无评论"
+      v-if="comments.length == 0"
+    />
   </div>
 </template>
 
