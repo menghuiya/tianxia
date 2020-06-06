@@ -24,7 +24,7 @@ export default {
   methods: {
     afterRead(file) {
       let surl =
-        'http://static-resource-1256396014.picnj.myqcloud.com/img/public/';
+        'https://static-resource-1256396014.picnj.myqcloud.com/img/public/';
       let eurl = '/shui_ying';
       file.status = 'uploading';
       file.message = '上传中...';
