@@ -112,22 +112,26 @@ export default {
       }).then((res) => {
         Toast.clear();
         Toast.success('充值成功');
-        location.reload();
+        this.f5(this.p.userId);
+        this.show = false;
       });
     },
     withdraw() {
       Toast('暂未开发此功能');
     },
+    f5(id) {
+      request({
+        url: '/api/user/balance/' + id,
+        method: 'get',
+      }).then((res) => {
+        this.balance = res.data.data.balance.toFixed(2);
+      });
+    },
   },
   mounted() {
     let id = JSON.parse(Cookies.get('userData')).id;
     this.p.userId = id;
-    request({
-      url: '/api/user/balance/' + id,
-      method: 'get',
-    }).then((res) => {
-      this.balance = res.data.data.balance.toFixed(2);
-    });
+    this.f5(id);
   },
 };
 </script>

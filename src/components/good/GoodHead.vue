@@ -49,8 +49,8 @@ export default {
     onClickRight() {
       this.showShare = true;
     },
-    onSelect(option) {
-      console.log(option.name);
+    onSelect(option, index) {
+      console.log(option, index);
       this.showShare = false;
     },
   },
