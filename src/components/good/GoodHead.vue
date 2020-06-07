@@ -35,6 +35,7 @@ export default {
         { name: '分享海报', icon: 'poster' },
         { name: '二维码', icon: 'qrcode' },
       ],
+      qurshow: false,
     };
   },
   methods: {
@@ -52,6 +53,22 @@ export default {
     onSelect(option, index) {
       console.log(option, index);
       this.showShare = false;
+      //生成一个二维码 data是二维码跳转的地址（写自己需要跳转的地址即可）
+      // const canvas = qrcanvas({
+      //   data: location.href,
+      // });
+      // this.qurshow = true;
+      // document.getElementById('about-wrapper').appendChild(canvas);
+      // //点击生成canvas转换成base64的图片
+      // this.$nextTick(() => {
+      //   const that = this;
+      //   html2canvas(document.body).then(function(canvas) {
+      //     that.imgSrc = canvas.toDataURL();
+      //   });
+      //   //隐藏元素
+      //   this.qurshow = false;
+      // });
+      this.$emit('buildpost', index);
     },
   },
 };

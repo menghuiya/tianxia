@@ -1,28 +1,32 @@
 <template>
-  <div class="boxs">
-    <div class="g-box" v-if="boxshow">
-      <good-head></good-head>
-      <good-user :user="goodinfo.user"></good-user>
-      <good-price
-        :price="goodinfo.price"
-        :isSale="goodinfo.isSale"
-      ></good-price>
-      <good-content
-        :des="goodinfo.description"
-        :imgPath="goodinfo.imgPath"
-      ></good-content>
+  <div>
+    <div class="boxs" id="contain">
+      <div class="g-box" v-if="boxshow">
+        <good-head @buildpost="buildpost"></good-head>
+        <good-user :user="goodinfo.user"></good-user>
+        <good-price
+          :price="goodinfo.price"
+          :isSale="goodinfo.isSale"
+        ></good-price>
+        <good-content
+          :des="goodinfo.description"
+          :imgPath="goodinfo.imgPath"
+        ></good-content>
+      </div>
+      <good-user-info :user="goodinfo.user"></good-user-info>
+      <good-comment-list
+        :comments="goodinfo.comment"
+        :user="goodinfo.user"
+      ></good-comment-list>
+      <good-action
+        @commentval="commentval"
+        :good_id="good_id"
+        :user_id="goodinfo.user._id"
+        v-if="isShow"
+      ></good-action>
     </div>
-    <good-user-info :user="goodinfo.user"></good-user-info>
-    <good-comment-list
-      :comments="goodinfo.comment"
-      :user="goodinfo.user"
-    ></good-comment-list>
-    <good-action
-      @commentval="commentval"
-      :good_id="good_id"
-      :user_id="goodinfo.user._id"
-      v-if="isShow"
-    ></good-action>
+    <img :src="imgUrl" class="posterimg" />
+    <good-poster :goodinfo="goodinfo" v-if="boxshow" ref="footer"></good-poster>
   </div>
 </template>
 
@@ -37,6 +41,7 @@ import GoodContent from './GoodContent';
 import GoodUserInfo from './GoodUserInfo';
 import GoodCommentList from './GoodCommentList';
 import GoodAction from './GoodAction';
+import GoodPoster from './Poster';
 export default {
   data() {
     return {
@@ -44,6 +49,8 @@ export default {
       goodinfo: {},
       isShow: false,
       noimg: require('@/assets/image/good/noimg.png'),
+      imgUrl: '', //最后转化出来的图片base64地址,
+      imgshow: false,
     };
   },
   components: {
@@ -54,6 +61,7 @@ export default {
     GoodUserInfo,
     GoodCommentList,
     GoodAction,
+    GoodPoster,
   },
   computed: {
     good_id() {
@@ -80,6 +88,11 @@ export default {
         Toast.clear();
         location.reload();
       });
+    },
+    buildpost(val) {
+      console.log(val);
+      this.imgshow = true;
+      this.$refs.footer.$emit('buildPoste');
     },
   },
   created() {
@@ -120,5 +133,9 @@ export default {
     padding: 3vw 4vw;
     background: #ffffff;
   }
+}
+.posterimg {
+  background: #ffffff;
+  margin: 0 4vw;
 }
 </style>

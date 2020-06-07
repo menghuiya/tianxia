@@ -18,9 +18,7 @@ const routes = [
   {
     path: '/',
     redirect: '/home',
-    meta: {
-      keepAlive: true, // 需要缓存
-    },
+    component: Home,
   },
   {
     path: '/home',
@@ -197,9 +195,9 @@ const routes = [
     },
   },
   {
-    path: '/test',
-    name: 'test',
-    component: () => import('@/views/test'),
+    path: '/poster/:good_id',
+    name: 'poster',
+    component: () => import('@/views/Poster'),
   },
 ];
 
