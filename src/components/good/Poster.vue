@@ -211,7 +211,7 @@ export default {
         height: 16vw;
       }
       div {
-        font-size: 0.8rem;
+        font-size: 0.7rem;
         color: #c8c9cc;
         span {
           color: #ff9900;

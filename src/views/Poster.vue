@@ -142,6 +142,7 @@ export default {
         // 【重要】默认转化的格式为png,也可设置为其他格式
         let imgUrl = canvas.toDataURL('image/png');
         this.imgUrl = imgUrl;
+        console.log(imgUrl);
         this.boxshow = true;
       });
     },
@@ -158,7 +159,7 @@ export default {
   border-radius: 2vw;
   overflow: hidden;
   min-height: 120vw;
-  width: 95vw;
+  width: 94vw;
   margin: 0 auto;
   .goodimg {
     width: 100%;
