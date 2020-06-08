@@ -129,6 +129,7 @@ export default {
 <style lang="less" scoped>
 .boxs {
   padding-bottom: 15vw;
+  background-color: #f2f2f2;
   .g-box {
     padding: 3vw 4vw;
     background: #ffffff;

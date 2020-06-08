@@ -9,12 +9,16 @@
               <img :src="goodinfo.imgPath[0]" />
             </div>
             <div class="posterklass">
-              {{ goodinfo.description.substr(0, 40) }}...
+              {{ goodinfo.description.substr(0, 32) }}...
             </div>
             <div class="poster-user">
               <van-icon name="ellipsis" />
               BY
-              <img class="post-userimg" :src="goodinfo.user.headImg" alt="" />
+              <img
+                class="post-userimg"
+                :src="goodinfo.user.headImg + '?' + new Date().getTime()"
+                crossOrigin="anonymous"
+              />
               <div class="post-username">
                 {{ goodinfo.user.userName }}
               </div>
@@ -168,6 +172,7 @@ export default {
     margin: 2vw 3vw;
     font-weight: 600;
     color: #000000;
+    min-height: 50px;
   }
   .poster-user {
     display: flex;
@@ -200,7 +205,7 @@ export default {
         height: 16vw;
       }
       div {
-        font-size: 0.8rem;
+        font-size: 0.7rem;
         color: #c8c9cc;
         span {
           color: #ff9900;
