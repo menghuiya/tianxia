@@ -142,7 +142,6 @@ export default {
         // 【重要】默认转化的格式为png,也可设置为其他格式
         let imgUrl = canvas.toDataURL('image/png');
         this.imgUrl = imgUrl;
-        console.log(imgUrl);
         this.boxshow = true;
       });
     },
