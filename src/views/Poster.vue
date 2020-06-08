@@ -16,7 +16,7 @@
               BY
               <img
                 class="post-userimg"
-                :src="goodinfo.user.headImg + '?' + new Date().getTime()"
+                :src="goodinfo.user.headImg + '?v' + new Date().getTime()"
                 crossOrigin="anonymous"
               />
               <div class="post-username">
