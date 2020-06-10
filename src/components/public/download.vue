@@ -29,6 +29,7 @@ export default {
       window.open(
         'https://static-resource-1256396014.cos.ap-nanjing.myqcloud.com/apk/sweet.apk'
       );
+      sessionStorage.setItem('isShowApp', 0);
     },
     closeapp() {
       this.isAndroid = false;
