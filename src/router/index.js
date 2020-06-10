@@ -194,11 +194,6 @@ const routes = [
       }
     },
   },
-  {
-    path: '/poster/:good_id',
-    name: 'poster',
-    component: () => import('@/views/Poster'),
-  },
 ];
 
 const router = new VueRouter({

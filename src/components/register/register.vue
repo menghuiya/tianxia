@@ -57,6 +57,7 @@
 
 <script>
 import md5 from 'js-md5';
+import Cookies from 'js-cookie';
 import backNavigation from './backNavigation';
 import { request } from '@/network/request';
 import { Notify } from 'vant';
@@ -122,10 +123,16 @@ export default {
         data: data,
       })
         .then((res) => {
-          console.log(res);
           const data = res.data;
+          console.log(data);
           if (data.status === 1) {
-            _this.$router.push('login');
+            let userdata = {
+              id: data.data.id,
+              userName: data.data.userName,
+            };
+            console.log(userdata);
+            Cookies.set('userData', JSON.stringify(userdata), { expires: 1 });
+            _this.$router.push('/user');
           } else {
             Notify({ type: 'danger', message: '注册失败' });
           }
@@ -140,6 +147,7 @@ export default {
       this.error_message = '';
     },
     recondimg() {
+      console.log('我点击了验证码图片');
       request({
         url: '/api/user/captcha',
         method: 'get',

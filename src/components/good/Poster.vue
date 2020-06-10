@@ -77,7 +77,7 @@ export default {
     return {
       imgboxshow: false,
       isShow: false,
-      posterHtmlBg: require('@/assets/image/good/poterbg.png'),
+
       imgUrl: '', //最后转化出来的图片base64地址,
       codeImgSrc: '',
       postcode: false,

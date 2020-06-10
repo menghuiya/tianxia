@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <app-download></app-download>
     <keep-alive include="Home,Second">
       <router-view />
     </keep-alive>
@@ -10,9 +11,11 @@
 <script>
 import { debounceFactory } from './tools';
 import TabBar from './components/tabbar/tabbar';
+import AppDownload from './components/public/download';
 export default {
   components: {
     TabBar,
+    AppDownload,
   },
   created() {
     const debounce = debounceFactory(100);
